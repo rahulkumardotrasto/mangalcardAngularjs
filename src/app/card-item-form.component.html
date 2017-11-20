@@ -1,0 +1,41 @@
+<header>
+    <h2>Add Different types of Card</h2>
+</header>
+<form
+[formGroup]="form"
+(ngSubmit)="onSubmit(form.value)">
+    <ul>
+        
+        <li>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" formControlName="name">
+            <div *ngIf="form.controls.name.errors?.pattern" class="error">
+            Name has  invalid characters
+            </div>
+        </li>
+         
+        <li>
+            <label for="category">Category</label>
+            <select name="category" id="category" formControlName="category">
+                <option *ngFor="let categories of lookupList.categories" value="{{ categories }}">{{ categories }}</option>
+               
+            </select>
+        </li>
+        <li>
+            <label for="Price">Price</label>
+            <input type="text" name="Price" id="Price" maxlength="4" formControlName="Price">
+            <div *ngIf="form.controls.Price.errors?.Price" class="error">
+            Must be between 
+            {{ form.controls.Price.errors?.Price.min }}
+            and
+            {{ form.controls.Price.errors?.Price.max }}
+            </div>
+        </li>
+        <li>
+            <label for="Description">Description</label>
+            <input type="text" name="Description" id="Description" formControlName="Description">
+        </li>
+        
+    </ul>
+    <button type="submit" [disabled]="!form.valid">Save</button>
+</form>

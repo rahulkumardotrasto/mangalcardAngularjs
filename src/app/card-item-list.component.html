@@ -1,0 +1,19 @@
+
+<header
+        [ngClass]="{'medium-movies':medium === 'Party', 'medium-series':medium === 'Marriage'}">
+        <h2>{{ category }}</h2>
+        <div>{{ cardItems | priceList }}  </div>
+</header>
+
+<section>
+    <app-card-item
+    [ngClass]="{'medium-movies': cI.category==='Party', 'medium-series': cI.category==='Marriage'}"
+    *ngFor="let cI of cardItems"
+     [cardItem]="cI"
+        (delete)="onCardItemDelete($event)"></app-card-item>
+</section>
+<footer>
+    <a routerLink="/add">
+        <img src="assets/add.png" class="icon" />
+    </a>
+</footer>
